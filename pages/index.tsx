@@ -1,7 +1,9 @@
 import {
   differenceInMilliseconds,
+  getMonth,
   getYear,
   h,
+  isFirstDayOfMonth,
   setYear,
   startOfYear,
   useEffect,
@@ -14,6 +16,10 @@ function nextNewYear() {
 
 function milliSecondsFromNextNewYear() {
   return differenceInMilliseconds(nextNewYear(), new Date());
+}
+
+function isOnNewYearDay(date: Date) {
+  return isFirstDayOfMonth(date) && getMonth(date) === 1;
 }
 
 function TimerDisplay({ milliseconds }: { milliseconds: number }) {

@@ -10,15 +10,15 @@ import {
   useState,
 } from "../deps.ts";
 
-function nextNewYear() {
+function nextNewYear(): Date {
   return startOfYear(setYear(new Date(), getYear(new Date()) + 1));
 }
 
-function milliSecondsFromNextNewYear() {
+function milliSecondsFromNextNewYear(): number {
   return differenceInMilliseconds(nextNewYear(), new Date());
 }
 
-function isOnNewYearDay(date: Date) {
+function isOnNewYearDay(date: Date): boolean {
   return isFirstDayOfMonth(date) && getMonth(date) === 1;
 }
 

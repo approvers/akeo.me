@@ -8,6 +8,7 @@ export {
 } from "https://deno.land/x/dext@0.10.1/deps/preact/hooks.ts";
 export type {
   AppProps,
+  DocumentProps,
   GetStaticData,
   GetStaticDataContext,
   GetStaticPaths,

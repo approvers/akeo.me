@@ -1,28 +1,6 @@
-import {
-  differenceInMilliseconds,
-  Fragment,
-  getMonth,
-  getYear,
-  h,
-  isFirstDayOfMonth,
-  setYear,
-  startOfYear,
-  useEffect,
-  useState,
-} from "../deps.ts";
+import { Fragment, h, useEffect, useState } from "../deps.ts";
 import { HappyEffects } from "../components/effects.tsx";
-
-function nextNewYear(): Date {
-  return startOfYear(setYear(new Date(), getYear(new Date()) + 1));
-}
-
-function milliSecondsFromNextNewYear(): number {
-  return differenceInMilliseconds(nextNewYear(), new Date());
-}
-
-function isFirstDayOfYear(date: Date): boolean {
-  return isFirstDayOfMonth(date) && getMonth(date) === 1;
-}
+import { isFirstDayOfYear, milliSecondsFromNextNewYear } from "../lib.ts";
 
 function TimerDisplay({ milliseconds }: { milliseconds: number }) {
   const millis = milliseconds % 1000;

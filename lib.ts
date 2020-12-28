@@ -7,12 +7,12 @@ import {
   startOfYear,
 } from "./deps.ts";
 
-function nextNewYear(): Date {
-  return startOfYear(setYear(new Date(), getYear(new Date()) + 1));
+function nextNewYear(date: Date): Date {
+  return startOfYear(setYear(date, getYear(date) + 1));
 }
 
-export function milliSecondsFromNextNewYear(): number {
-  return differenceInMilliseconds(nextNewYear(), new Date());
+export function milliSecondsFromNextNewYear(date: Date): number {
+  return differenceInMilliseconds(nextNewYear(date), date);
 }
 
 export function isFirstDayOfYear(date: Date): boolean {

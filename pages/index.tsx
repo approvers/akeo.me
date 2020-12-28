@@ -28,10 +28,10 @@ function TimerDisplay({ milliseconds }: { milliseconds: number }) {
 }
 
 function IndexPage() {
-  const [millis, setMillis] = useState(milliSecondsFromNextNewYear());
+  const [millis, setMillis] = useState(milliSecondsFromNextNewYear(new Date()));
   useEffect(() => {
     const timer = setTimeout(
-      () => setMillis(milliSecondsFromNextNewYear()),
+      () => setMillis(milliSecondsFromNextNewYear(new Date())),
       10,
     );
     return () => clearTimeout(timer);

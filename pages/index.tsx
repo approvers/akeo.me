@@ -1,5 +1,6 @@
 import {
   differenceInMilliseconds,
+  Fragment,
   getMonth,
   getYear,
   h,
@@ -9,6 +10,7 @@ import {
   useEffect,
   useState,
 } from "../deps.ts";
+import { HappyEffects } from "../components/effects.tsx";
 
 function nextNewYear(): Date {
   return startOfYear(setYear(new Date(), getYear(new Date()) + 1));
@@ -55,7 +57,10 @@ function IndexPage() {
     );
     return () => clearTimeout(timer);
   }, [millis]);
-  return <TimerDisplay milliseconds={millis} />;
+  return <>
+    <TimerDisplay milliseconds={millis} />
+    {isOnNewYearDay(new Date()) && <HappyEffects />}
+  </>;
 }
 
 export default IndexPage;

@@ -32,7 +32,7 @@ function IndexPage() {
   useEffect(() => {
     const timer = setTimeout(
       () => setMillis(milliSecondsFromNextNewYear(new Date())),
-      10,
+      100,
     );
     return () => clearTimeout(timer);
   }, [millis]);

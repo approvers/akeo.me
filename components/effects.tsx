@@ -2,28 +2,29 @@ import { h, useEffect, useState } from "../deps.ts";
 
 const FALL_SPEED = 0.4;
 const FLIP_SPEED = 0.2;
+const COLORS = ["white", "#ff80ce", "#5dc300", "#ff9021", "#85abff", "#00bed3"];
+
+class FallingPieceNode {
+  x: number;
+  y: number;
+  color: string;
+  dir: number;
+
+  constructor(x: number, delay: number) {
+    this.x = x;
+    this.y = -150 - delay;
+    this.color = COLORS.sort(() => Math.random() - 0.5)[0];
+    this.dir = Math.sign(Math.random() - 0.5);
+  }
+
+  update() {
+    this.y = 200 < this.y ? -200 : this.y + FALL_SPEED;
+  }
+}
 
 function FallingPiece(
-  { x, delay }: { x: number; delay: number },
+  { x, y, color, dir }: FallingPieceNode,
 ) {
-  const [y, setY] = useState(-150 - delay);
-  const [color, _setColor] = useState(() =>
-    ["white", "#ff80ce", "#5dc300", "#ff9021", "#85abff", "#00bed3"].sort(() =>
-      Math.random() - 0.5
-    )[0]
-  );
-  const [dir, _setDir] = useState(() => Math.sign(Math.random() - 0.5));
-  useEffect(
-    () => {
-      let anime = requestAnimationFrame(fall);
-      function fall() {
-        setY((y: number) => 200 < y ? -200 : y + FALL_SPEED);
-        anime = requestAnimationFrame(fall);
-      }
-      return () => cancelAnimationFrame(anime);
-    },
-    [],
-  );
   return <rect
     id="test"
     fill={color}
@@ -36,6 +37,24 @@ function FallingPiece(
 }
 
 export function HappyEffects() {
+  const [nodes, setNodes] = useState(() =>
+    [...new Array(250)].map(() => Math.random() * 400).map((rand, index) =>
+      new FallingPieceNode((index * 2) - 200, rand)
+    )
+  );
+  useEffect(() => {
+    let timer = requestAnimationFrame(fall);
+    function fall() {
+      setNodes((nodes) =>
+        nodes.map((node) => {
+          node.update();
+          return node;
+        })
+      );
+      timer = requestAnimationFrame(fall);
+    }
+    return () => cancelAnimationFrame(timer);
+  }, []);
   return <svg
     width="100%"
     height="100%"
@@ -47,11 +66,6 @@ export function HappyEffects() {
       left: "0",
     }}
   >
-    {[...new Array(250)].map(() => Math.random() * 400).map((rand, x) =>
-      <FallingPiece
-        x={(x * 2) - 200}
-        delay={rand}
-      />
-    )}
+    {nodes.map((node) => <FallingPiece {...node} />)}
   </svg>;
 }

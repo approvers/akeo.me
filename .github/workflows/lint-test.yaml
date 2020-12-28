@@ -16,7 +16,7 @@ jobs:
           deno-version: 1.6.0
       - name: Lint modules
         run: |
-          deno fmt --check
+          deno fmt --ignore=.dext,dist
       - name: Test modules
         run: |
           deno test --allow-none

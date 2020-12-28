@@ -17,7 +17,7 @@ function FallingPiece(
     () => {
       let anime = requestAnimationFrame(fall);
       function fall() {
-        setY((y: number) => 100 < y ? -150 : y + FALL_SPEED);
+        setY((y: number) => 200 < y ? -200 : y + FALL_SPEED);
         anime = requestAnimationFrame(fall);
       }
       return () => cancelAnimationFrame(anime);

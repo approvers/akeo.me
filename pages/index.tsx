@@ -2,7 +2,7 @@ import getYear from "https://deno.land/x/date_fns@v2.15.0/getYear/index.js";
 import setYear from "https://deno.land/x/date_fns@v2.15.0/setYear/index.js";
 import startOfYear from "https://deno.land/x/date_fns@v2.15.0/startOfYear/index.js";
 import differenceInMilliseconds from "https://deno.land/x/date_fns@v2.15.0/differenceInMilliseconds/index.js";
-import { h, useEffect, useState } from "../deps.ts";
+import { Fragment, h, useEffect, useState } from "../deps.ts";
 
 function nextNewYear() {
   return startOfYear(setYear(new Date(), getYear(new Date()) + 1));
@@ -22,10 +22,13 @@ function TimerDisplay({ milliseconds }: { milliseconds: number }) {
     style={{
       height: "90vh",
       display: "flex",
+      textAlign: "center",
       alignItems: "center",
       justifyContent: "center",
     }}
   >
+    新年まであと:{" "}
+    <br />
     {Math.round(days % 366)}日{" "}
     {Math.round(hours % 24)}時間{" "}
     {Math.round(minutes % 60)}分{" "}

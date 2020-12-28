@@ -14,3 +14,8 @@ export type {
   GetStaticPaths,
   PageProps,
 } from "https://deno.land/x/dext@0.10.1/mod.ts";
+export {
+  getYear,
+  setYear,
+  startOfYear,
+} from "https://deno.land/x/date_fns@v2.15.0/index.js";

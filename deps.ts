@@ -15,6 +15,7 @@ export type {
   PageProps,
 } from "https://deno.land/x/dext@0.10.1/mod.ts";
 export {
+  differenceInMilliseconds,
   getYear,
   setYear,
   startOfYear,

@@ -22,8 +22,15 @@ class FallingPieceNode {
   }
 }
 
+interface FallingPieceProps {
+  x: number;
+  y: number;
+  color: string;
+  dir: number;
+}
+
 function FallingPiece(
-  { x, y, color, dir }: FallingPieceNode,
+  { x, y, color, dir }: FallingPieceProps,
 ) {
   return <rect
     id="test"

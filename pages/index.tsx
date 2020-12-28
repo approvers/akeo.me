@@ -20,7 +20,7 @@ function milliSecondsFromNextNewYear(): number {
   return differenceInMilliseconds(nextNewYear(), new Date());
 }
 
-function isOnNewYearDay(date: Date): boolean {
+function isFirstDayOfYear(date: Date): boolean {
   return isFirstDayOfMonth(date) && getMonth(date) === 1;
 }
 
@@ -59,7 +59,7 @@ function IndexPage() {
   }, [millis]);
   return <>
     <TimerDisplay milliseconds={millis} />
-    {isOnNewYearDay(new Date()) && <HappyEffects />}
+    {isFirstDayOfYear(new Date()) && <HappyEffects />}
   </>;
 }
 

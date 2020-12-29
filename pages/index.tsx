@@ -19,10 +19,10 @@ function TimerDisplay({ milliseconds }: { milliseconds: number }) {
   >
     新年まであと:{" "}
     <br />
-    {Math.round(days % 366)}日{" "}
-    {Math.round(hours % 24)}時間{" "}
-    {Math.round(minutes % 60)}分{" "}
-    {Math.round(seconds % 60)}秒{" "}
+    {Math.floor(days % 366)}日{" "}
+    {Math.floor(hours % 24)}時間{" "}
+    {Math.floor(minutes % 60)}分{" "}
+    {Math.floor(seconds % 60)}秒{" "}
     {millis.toString().padStart(3, "0")}
   </h1>;
 }

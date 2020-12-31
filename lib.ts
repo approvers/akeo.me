@@ -16,5 +16,5 @@ export function milliSecondsFromNextNewYear(date: Date): number {
 }
 
 export function isFirstDayOfYear(date: Date): boolean {
-  return isFirstDayOfMonth(date) && getMonth(date) === 1;
+  return isFirstDayOfMonth(date) && getMonth(date) === 0;
 }

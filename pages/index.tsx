@@ -1,6 +1,6 @@
 import { Fragment, h, useEffect, useState } from "../deps.ts";
 import { HappyEffects } from "../components/effects.tsx";
-import { isFirstDayOfYear, milliSecondsFromNextNewYear } from "../lib.ts";
+import { isFirstHourOfDay, milliSecondsFromNextNewYear } from "../lib.ts";
 
 function TimerDisplay({ milliseconds }: { milliseconds: number }) {
   const millis = milliseconds % 1000;
@@ -38,7 +38,7 @@ function IndexPage() {
   }, [millis]);
   return <>
     <TimerDisplay milliseconds={millis} />
-    {isFirstDayOfYear(new Date()) && <HappyEffects />}
+    {isFirstHourOfDay(new Date()) && <HappyEffects />}
   </>;
 }
 

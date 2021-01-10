@@ -1,8 +1,8 @@
 import {
   differenceInMilliseconds,
-  getMonth,
+  getHours,
+  getMinutes,
   getYear,
-  isFirstDayOfMonth,
   setYear,
   startOfYear,
 } from "./deps.ts";
@@ -15,6 +15,6 @@ export function milliSecondsFromNextNewYear(date: Date): number {
   return differenceInMilliseconds(nextNewYear(date), date);
 }
 
-export function isFirstDayOfYear(date: Date): boolean {
-  return isFirstDayOfMonth(date) && getMonth(date) === 0;
+export function isFirstHourOfDay(date: Date): boolean {
+  return getHours(date) == 0 && getMinutes(date) <= 30;
 }

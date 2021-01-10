@@ -16,9 +16,9 @@ export type {
 } from "https://deno.land/x/dext@0.10.1/mod.ts";
 export {
   differenceInMilliseconds,
+  getDay,
   getHours,
   getMinutes,
-  getYear,
-  setYear,
-  startOfYear,
+  setDay,
+  startOfDay,
 } from "https://deno.land/x/date_fns@v2.15.0/index.js";

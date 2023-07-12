@@ -1,4 +1,5 @@
-import { h, useEffect, useState } from "../deps.ts";
+import { useEffect, useState } from "preact/hooks";
+import { getHours, getMinutes } from "date-fns";
 
 const FALL_SPEED = 0.4;
 const FLIP_SPEED = 0.2;
@@ -32,18 +33,28 @@ interface FallingPieceProps {
 function FallingPiece(
   { x, y, color, dir }: FallingPieceProps,
 ) {
-  return <rect
-    id="test"
-    fill={color}
-    x={0.4 * Math.sin(y * FLIP_SPEED) + x}
-    y={y}
-    width={5}
-    height={5}
-    transform={`skewX(${dir * y / 4})`}
-  />;
+  return (
+    <rect
+      id="test"
+      fill={color}
+      x={0.4 * Math.sin(y * FLIP_SPEED) + x}
+      y={y}
+      width={5}
+      height={5}
+      transform={`skewX(${dir * y / 4})`}
+    />
+  );
 }
 
-export function HappyEffects() {
+function isFirstHourOfDay(date: Date): boolean {
+  return getHours(date) == 0 && getMinutes(date) <= 30;
+}
+
+export default () => {
+  if (!isFirstHourOfDay(new Date())) {
+    return null;
+  }
+
   const [nodes, setNodes] = useState(() =>
     [...new Array(250)].map(() => Math.random() * 400).map((rand, index) =>
       new FallingPieceNode((index * 2) - 200, rand)
@@ -62,17 +73,19 @@ export function HappyEffects() {
     }
     return () => cancelAnimationFrame(timer);
   }, []);
-  return <svg
-    width="100%"
-    height="100%"
-    viewBox="-100 -100 200 200"
-    xmlns="http://www.w3.org/2000/svg"
-    style={{
-      position: "fixed",
-      top: "0",
-      left: "0",
-    }}
-  >
-    {nodes.map((node) => <FallingPiece {...node} />)}
-  </svg>;
-}
+  return (
+    <svg
+      width="100%"
+      height="100%"
+      viewBox="-100 -100 200 200"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{
+        position: "fixed",
+        top: "0",
+        left: "0",
+      }}
+    >
+      {nodes.map((node) => <FallingPiece {...node} />)}
+    </svg>
+  );
+};

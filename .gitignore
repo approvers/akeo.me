@@ -1,7 +1,6 @@
-desktop.ini
-Thumbs.db
-.DS_Store
-
-# Dext.ts
-.dext/
-dist/
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local

@@ -1,4 +1,4 @@
-import { h, useEffect, useState } from "../deps.ts";
+import { useState, useEffect } from 'preact/hooks';
 
 const FALL_SPEED = 0.4;
 const FLIP_SPEED = 0.2;
@@ -43,7 +43,7 @@ function FallingPiece(
   />;
 }
 
-export function HappyEffects() {
+export default () => {
   const [nodes, setNodes] = useState(() =>
     [...new Array(250)].map(() => Math.random() * 400).map((rand, index) =>
       new FallingPieceNode((index * 2) - 200, rand)
